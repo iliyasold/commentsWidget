@@ -14,7 +14,7 @@ Run this in the terminal:
 
 Copyright © 2022 Soldatkin™Lab
 
-## License
+### License
 MIT.
 
 

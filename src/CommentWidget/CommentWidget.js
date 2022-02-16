@@ -14,12 +14,20 @@ function CommentWidget() {
         setItems(newItems);
     }
 
+    function removeCommentItem(position) {
+        const newListItem = [...items]
+
+        newListItem.splice(position, 1);
+
+        setItems(newListItem);
+    }
+
     return (
         <div className="CommentWidget">
             <div className="CommentForm-wrap">
                 <CommentForm addNewItem={ addItem } />
 
-                <CommentList comments={ items } />
+                <CommentList comments={ items } removeCommentItem={removeCommentItem}/>
             </div>
 
             <CommentatorsTop names={ items } />

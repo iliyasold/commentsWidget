@@ -1,7 +1,7 @@
 import CommentForm from './CommentForm'
 import CommentList from './CommentList'
 import CommentatorsTop from "./CommentatorsTop";
-import { useState } from 'react';
+import {useState} from 'react';
 
 function CommentWidget() {
     const [items, setItems] = useState([]);
@@ -15,22 +15,24 @@ function CommentWidget() {
     }
 
     function removeCommentItem(position) {
-        const newListItem = [...items]
+        if (window.confirm('Удалить?')) {
+            const newListItem = [...items]
 
-        newListItem.splice(position, 1);
+            newListItem.splice(position,1);
 
-        setItems(newListItem);
+            setItems(newListItem);
+        }
     }
 
     return (
         <div className="CommentWidget">
             <div className="CommentForm-wrap">
-                <CommentForm addNewItem={ addItem } />
+                <CommentForm addNewItem={addItem}/>
 
-                <CommentList comments={ items } removeCommentItem={removeCommentItem}/>
+                <CommentList comments={items} removeCommentItem={removeCommentItem}/>
             </div>
 
-            <CommentatorsTop names={ items } />
+            <CommentatorsTop names={items}/>
         </div>
     )
 }

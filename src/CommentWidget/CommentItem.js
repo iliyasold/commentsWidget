@@ -2,7 +2,7 @@ import { BsTrash } from 'react-icons/bs';
 
 function CommentItem(props) {
     return(
-        <li className="CommentItem" id={props.pos}>
+        <li className="CommentItem" id={props.itemId}>
             <div className="CommentItem-wrap">
                 <span className="СommentItem-span СommentItem-name">{props.userName}</span>
 

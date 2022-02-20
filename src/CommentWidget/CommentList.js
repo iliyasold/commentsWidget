@@ -14,7 +14,8 @@ function CommentList(props) {
                         commentText={comment.commentText}
                         currentDate={comment.currentDate}
                         currentTime={comment.currentTime}
-                        removeItem={() => props.removeCommentItem(i)}
+                        removeItem={() => props.removeCommentItem(i, comment.itemId)}
+                        getStorageItems={() => props.getStorageItems(i, comment.itemId)}
                     />
                 }
             )}

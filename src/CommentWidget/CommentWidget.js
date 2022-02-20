@@ -12,13 +12,19 @@ function CommentWidget() {
         newItems.push(item)
 
         setItems(newItems);
+
+        const storageNewItems = JSON.stringify(newItems);
+
+        localStorage.setItem(item.itemId, storageNewItems);
     }
 
-    function removeCommentItem(position) {
+    function removeCommentItem(position, itemId) {
         if (window.confirm('Удалить?')) {
             const newListItem = [...items]
 
-            newListItem.splice(position,1);
+            newListItem.splice(position, 1);
+
+            localStorage.removeItem(itemId);
 
             setItems(newListItem);
         }
@@ -29,7 +35,7 @@ function CommentWidget() {
             <div className="CommentForm-wrap">
                 <CommentForm addNewItem={addItem}/>
 
-                <CommentList comments={items} removeCommentItem={removeCommentItem}/>
+                <CommentList comments={items} removeCommentItem={removeCommentItem} />
             </div>
 
             <CommentatorsTop names={items}/>

@@ -1,10 +1,20 @@
 import CommentForm from './CommentForm'
 import CommentList from './CommentList'
 import CommentatorsTop from "./CommentatorsTop";
-import {useState} from 'react';
+import React, {useState} from 'react';
 
 function CommentWidget() {
     const [items, setItems] = useState([]);
+
+    window.onload = function () {
+        const storageItems = []
+
+        for (let i = 0; i < localStorage.length; i++) {
+            storageItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
+        }
+
+        setItems(storageItems);
+    };
 
     function addItem(item) {
         const newItems = [...items]
@@ -13,7 +23,7 @@ function CommentWidget() {
 
         setItems(newItems);
 
-        const storageNewItems = JSON.stringify(newItems);
+        const storageNewItems = JSON.stringify(item);
 
         localStorage.setItem(item.itemId, storageNewItems);
     }
@@ -35,7 +45,7 @@ function CommentWidget() {
             <div className="CommentForm-wrap">
                 <CommentForm addNewItem={addItem}/>
 
-                <CommentList comments={items} removeCommentItem={removeCommentItem} />
+                <CommentList comments={items} removeCommentItem={removeCommentItem}/>
             </div>
 
             <CommentatorsTop names={items}/>
